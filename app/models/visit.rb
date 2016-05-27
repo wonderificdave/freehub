@@ -43,7 +43,7 @@ class Visit < ActiveRecord::Base
 
   def initialize(params={})
     super
-    self.arrived_at ||= Time.now
+    self.arrived_at ||= Time.zone.now
     self.volunteer ||= false
     self.note ||= Note.new
   end
