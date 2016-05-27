@@ -47,13 +47,13 @@ class Service < ActiveRecord::Base
 
   def initialize(params={})
     super
-    self.start_date ||= Date.today
-    self.end_date ||= Date.today.next_year
+    self.start_date ||= Time.zone.today
+    self.end_date ||= Time.zone.today.next_year
     self.note ||= Note.new
   end
 
   def current?
-    (start_date.nil? || Date.today >= start_date) && (end_date.nil? || Date.today <= end_date)
+    (start_date.nil? || Time.zone.today >= start_date) && (end_date.nil? || Time.zone.today <= end_date)
   end
 
   def service_type

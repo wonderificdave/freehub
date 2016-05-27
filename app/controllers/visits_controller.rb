@@ -91,7 +91,7 @@ class VisitsController < ApplicationController
   end
 
   def today
-    today = Date.today
+    today = Time.zone.today
     params.merge! :year => today.year, :month => today.month, :day => today.day
     day
   end

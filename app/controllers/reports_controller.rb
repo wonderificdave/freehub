@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
                  :before => params[:report][:before]}
       @report.delete_if { |key, value| value.respond_to?(:empty?) && value.empty? }
     else
-      @report = {:for_organization => @organization, :after => Date.today, :before => Date.tomorrow}
+      @report = {:for_organization => @organization, :after => Time.zone.today, :before => Time.zone.today.tomorrow}
     end
 
     @visits = Visit.chain_finders(@report)
@@ -74,7 +74,7 @@ class ReportsController < ApplicationController
       @report.delete_if { |key, value| value.nil? || (value.respond_to?(:empty?) && value.empty?) }
     else
       @report = {:for_organization => @organization,
-                 :after => Date.today, :before => Date.tomorrow}
+                 :after => Time.zone.today, :before => Time.zone.today.tomorrow}
     end
 
     @people = Person.chain_finders(@report)

@@ -78,7 +78,7 @@
         -for service in services
           %li{:class => cycle('odd','even', :name => 'services')}
             %span.what= service.service_type.name
-            %span.when= "#{service.end_date >= Date.today ? 'Ends' : 'Ended'} #{date_short(service.end_date)}" #todo: handle membership, EAB, class differently
+            %span.when= "#{service.end_date >= Time.zone.today ? 'Ends' : 'Ended'} #{date_short(service.end_date)}" #todo: handle membership, EAB, class differently
             -if service.note
               %span.note= note_text(service.note)
       %p
