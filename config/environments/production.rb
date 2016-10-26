@@ -29,6 +29,16 @@ config.action_view.cache_template_loading            = true
 
 # Set up with SendGrid for Engine Yard per
 # https://github.com/engineyard/ey-cloud-recipes/tree/master/cookbooks/ssmtp
-config.action_mailer.delivery_method = :sendmail
+#config.action_mailer.delivery_method = :sendmail
+
+ActionMailer::Base.smtp_settings = {
+  :user_name => ENV["GMAIL_USERNAME"],
+  :password => ENV["GMAIL_PASSWORD"],
+  :domain => 'freehub.herokuapp.com',
+  :address => 'smtp.gmail.com',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
 
 SITE_URL = 'http://freehub.bikekitchen.org'
