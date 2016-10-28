@@ -32,10 +32,10 @@ config.action_view.cache_template_loading            = true
 #config.action_mailer.delivery_method = :sendmail
 
 ActionMailer::Base.smtp_settings = {
-  :user_name => ENV["GMAIL_USERNAME"],
-  :password => ENV["GMAIL_PASSWORD"],
+  :user_name => ENV["MAIL_USERNAME"],
+  :password => ENV["MAIL_PASSWORD"],
   :domain => 'freehub.herokuapp.com',
-  :address => 'smtp.gmail.com',
+  :address => 'smtp.sendgrid.net',
   :port => 587,
   :authentication => :plain,
   :enable_starttls_auto => true
