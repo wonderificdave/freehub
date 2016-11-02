@@ -32,7 +32,7 @@
   -if !logged_in?
     %div.section
       %h2 Log In
-      -form_tag session_path, :id => 'home_login' do
+      =form_tag session_path, :id => 'home_login' do
         %ul
           =labeled_input 'Login', :for => :login do
             -capture do
