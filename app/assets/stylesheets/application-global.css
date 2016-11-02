@@ -78,7 +78,7 @@
 }
 
 #application_footer {
-  background: url('../images/footer_bg.png') no-repeat;
+  background: url('../assets/footer_bg.png') no-repeat;
   font-style: italic;
   padding: 14px 14px 26px 14px;
   clear: both;
