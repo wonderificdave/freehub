@@ -60,7 +60,7 @@
             = check_box_tag(:visiting, true, params[:visiting], :class => 'checkbox')
             %label.choice{:for => 'visiting'} Visiting the shop today
       -else
-        %li= userstamp_labeled_values(person)
+        %li!= userstamp_labeled_values(person)
       =labeled_input 'Tags', :for => :tag_list do
         -capture do
           %div

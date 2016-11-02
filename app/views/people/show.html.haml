@@ -54,7 +54,7 @@
   %div.column.left#visits
     %h2 Recent Visits
     =link_to 'Add a Visit', new_visit_path(:person_id => @person), :class => 'add_link'
-    -visits = @person.visits.paginate(:size => 5)
+    -visits = @person.visits.limit(5)
     -if visits.empty?
       %p.list_status No past visits.
     -else
@@ -70,7 +70,7 @@
   %div.column#services
     %h2 Current Services
     =link_to 'Add A Service', new_service_path(:person_id => @person), :class => 'add_link'
-    -services = @person.services.paginate(:size => 5)
+    -services = @person.services.limit(5)
     -if services.empty?
       %p.list_status No past services.
     -else

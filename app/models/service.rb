@@ -28,20 +28,20 @@ class Service < ActiveRecord::Base
 
   before_validation :remove_empty_note
 
-  named_scope :for_organization, lambda { |organization| {
+  scope :for_organization, lambda { |organization| {
       :conditions => [ "people.organization_id = ?", organization ],
       :include => [ :person, :note ]
   } }
 
-  named_scope :end_after, lambda { |date| {
+  scope :end_after, lambda { |date| {
       :conditions => [ "services.end_date > ?", date ]
   } }
 
-  named_scope :end_before, lambda { |date| {
+  scope :end_before, lambda { |date| {
       :conditions => [ "services.end_date < ?", date ]
   } }
 
-  named_scope :for_service_types, lambda { |service_types| {
+  scope :for_service_types, lambda { |service_types| {
       :conditions => [ "services.service_type_id IN (?)", service_types ]
   } }
 

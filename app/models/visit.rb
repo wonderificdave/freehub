@@ -27,17 +27,17 @@ class Visit < ActiveRecord::Base
 
   before_save :remove_empty_note, :record_staff_status, :record_member_status
 
-  named_scope :for_organization, lambda { |organization| {
+  scope :for_organization, lambda { |organization| {
       :conditions => [ "people.organization_id = ?", organization ],
       :include => [ :person, :note ],
       :order => 'arrived_at DESC'
   } }
 
-  named_scope :after, lambda { |date| {
+  scope :after, lambda { |date| {
       :conditions => [ "convert_tz(visits.arrived_at,'+00:00','#{Time.zone.formatted_offset}') >= ?", date.to_date.to_time.utc ]
   } }
 
-  named_scope :before, lambda { |date| {
+  scope :before, lambda { |date| {
       :conditions => [ "convert_tz(visits.arrived_at,'+00:00','#{Time.zone.formatted_offset}') < ?", date.to_date.to_time.utc ]
   } }
 

@@ -30,7 +30,7 @@ class Organization < ActiveRecord::Base
   end
 
   def member_count
-    @member_count ||= Service.for_organization(self).end_after(Date.yesterday).for_service_types(ServiceType[:membership].id).paginate(:size => 0).size
+    @member_count ||= Service.for_organization(self).end_after(Date.yesterday).for_service_types(ServiceType[:membership].id).size
   end
 
   def visits_count
@@ -38,7 +38,7 @@ class Organization < ActiveRecord::Base
   end
 
   def last_visit
-    @last_visit ||= Visit.for_organization(self).paginate(:size => 1).to_a.first
+    @last_visit ||= Visit.for_organization(self).first
   end
 
   # Active if a visit within last 30 days

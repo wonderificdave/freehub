@@ -91,7 +91,7 @@ class PeopleController < ApplicationController
   end
 
   def auto_complete_for_person_full_name
-    @items = Person.for_organization(@organization).matching_name(params[:person][:full_name]).paginate(:size => 15)
+    @items = Person.for_organization(@organization).matching_name(params[:person][:full_name]).limit(15)
     render :inline => "<%= auto_complete_result_with_add_person @items, 'full_name' %>"
   end
 end
