@@ -51,5 +51,6 @@ group :development, :test do
   gem 'annotate'
   gem 'test-unit'
   gem 'shoulda'
+  gem 'rspec_junit_formatter'
 end
 
