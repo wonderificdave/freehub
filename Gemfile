@@ -50,6 +50,6 @@ group :development, :test do
   gem 'rdoc'
   gem 'annotate'
   gem 'test-unit'
-  gem 'thoughtbot-shoulda'
+  gem 'shoulda'
 end
 
