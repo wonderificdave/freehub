@@ -18,12 +18,13 @@ class Visit < ActiveRecord::Base
   
   belongs_to :person
   has_one :note, :as => :notable, :dependent => :destroy
-  has_userstamps
+  belongs_to :created_by, :class_name => "User", :foreign_key => "created_by_id"
+  belongs_to :updated_by, :class_name => "User", :foreign_key => "updated_by_id"
 
   validates_presence_of :person_id, :arrived_at
 
-  acts_as_paginated
-  chains_finders
+  
+  
 
   before_save :remove_empty_note, :record_staff_status, :record_member_status
 

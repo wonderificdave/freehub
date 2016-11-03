@@ -43,7 +43,9 @@ class Person < ActiveRecord::Base
   end
   has_many :notes, :as => :notable, :dependent => :destroy
 
-  has_userstamps
+  belongs_to :created_by, :class_name => "User", :foreign_key => "created_by_id"
+  belongs_to :updated_by, :class_name => "User", :foreign_key => "updated_by_id"
+
 
   validates_presence_of :first_name, :organization_id
   validates_uniqueness_of :email, :scope => :organization_id, :case_sensitive => false, :allow_nil => true, :allow_blank => true
@@ -56,8 +58,8 @@ class Person < ActiveRecord::Base
   before_save :titleize_name, :update_full_name, :titleize_address, :downcase_email
 
   acts_as_taggable
-  acts_as_paginated
-  chains_finders
+  
+  
 
   scope :for_organization, lambda { |organization| {
       :conditions => { :organization_id => organization },
