@@ -46,8 +46,8 @@ class Service < ActiveRecord::Base
       :conditions => [ "services.service_type_id IN (?)", service_types ]
   } }
 
-  def initialize(params={})
-    super
+  after_initialize :init
+  def init
     self.start_date ||= Date.today
     self.end_date ||= Date.today.next_year
     self.note ||= Note.new

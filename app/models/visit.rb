@@ -42,8 +42,8 @@ class Visit < ActiveRecord::Base
       :conditions => [ "convert_tz(visits.arrived_at,'+00:00','#{Time.zone.formatted_offset}') < ?", date.to_date.to_time.utc ]
   } }
 
-  def initialize(params={})
-    super
+  after_initialize :init
+  def init
     self.arrived_at ||= Time.now
     self.volunteer ||= false
     self.note ||= Note.new

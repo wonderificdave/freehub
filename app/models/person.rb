@@ -82,8 +82,8 @@ class Person < ActiveRecord::Base
       :conditions => [ "people.staff = ?", is_staff]
   } }
 
-  def initialize(params={})
-    super
+  after_initialize :init
+  def init
     self.country ||= 'US'
   end
 

@@ -24,8 +24,8 @@ class Organization < ActiveRecord::Base
 
   acts_as_authorizable
   
-  def initialize(attributes=nil)
-    super(attributes)
+  after_initialize :init
+  def init
     self[:timezone] ||= 'Pacific Time (US & Canada)'
   end
 
